@@ -5,6 +5,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Services;
 using System.Xml.Linq;
+using ISC.RandomValueGenerator.Models;
 
 namespace ISC.RandomValueGenerator
 {
@@ -18,7 +19,7 @@ namespace ISC.RandomValueGenerator
     // [System.Web.Script.Services.ScriptService]
     public class Generate : System.Web.Services.WebService
     {
-        Random _r = new Random();
+        private readonly Random _r = new Random();
         [WebMethod]
         public MeterModel Random()
         {
@@ -57,6 +58,77 @@ namespace ISC.RandomValueGenerator
             };
 
             return meterModel;
+        }
+
+        [WebMethod]
+        public MeterModel Integers()
+        {
+            return Random();
+        }
+
+        [WebMethod]
+        public BooleanModel Digitals()
+        {
+            var boolModel = new BooleanModel
+            {
+                DigitalInput01 = _r.Next(100) <= 20,
+                DigitalInput02 = _r.Next(100) <= 20,
+                DigitalInput03 = _r.Next(100) <= 20,
+                DigitalInput04 = _r.Next(100) <= 20,
+                DigitalInput05 = _r.Next(100) <= 20,
+                DigitalInput06 = _r.Next(100) <= 20,
+                DigitalInput07 = _r.Next(100) <= 20,
+                DigitalInput08 = _r.Next(100) <= 20,
+                DigitalInput09 = _r.Next(100) <= 20,
+                DigitalInput10 = _r.Next(100) <= 20,
+                DigitalInput11 = _r.Next(100) <= 20,
+                DigitalInput12 = _r.Next(100) <= 20,
+                DigitalInput13 = _r.Next(100) <= 20,
+                DigitalInput14 = _r.Next(100) <= 20,
+                DigitalInput15 = _r.Next(100) <= 20,
+                DigitalInput16 = _r.Next(100) <= 20,
+                DigitalInput17 = _r.Next(100) <= 20,
+                DigitalInput18 = _r.Next(100) <= 20,
+                DigitalInput19 = _r.Next(100) <= 20,
+                DigitalInput20 = _r.Next(100) <= 20
+            };
+
+            return boolModel;
+        }
+
+        [WebMethod]
+        public DoubleModel AreaFloats(double min, double max)
+        {
+            var floatModel = new DoubleModel
+            {
+                TemperatureInput01 = RandomDouble(min, max),
+                TemperatureInput02 = RandomDouble(min, max),
+                TemperatureInput03 = RandomDouble(min, max),
+                TemperatureInput04 = RandomDouble(min, max),
+                TemperatureInput05 = RandomDouble(min, max),
+                TemperatureInput06 = RandomDouble(min, max),
+                TemperatureInput07 = RandomDouble(min, max),
+                TemperatureInput08 = RandomDouble(min, max),
+                TemperatureInput09 = RandomDouble(min, max),
+                TemperatureInput10 = RandomDouble(min, max),
+                TemperatureInput11 = RandomDouble(min, max),
+                TemperatureInput12 = RandomDouble(min, max),
+                TemperatureInput13 = RandomDouble(min, max),
+                TemperatureInput14 = RandomDouble(min, max),
+                TemperatureInput15 = RandomDouble(min, max),
+                TemperatureInput16 = RandomDouble(min, max),
+                TemperatureInput17 = RandomDouble(min, max),
+                TemperatureInput18 = RandomDouble(min, max),
+                TemperatureInput19 = RandomDouble(min, max),
+                TemperatureInput20 = RandomDouble(min, max)
+            };
+
+            return floatModel;
+        }
+
+        private double RandomDouble(double min, double max)
+        {
+            return min + (_r.NextDouble() * (max - min));
         }
     }
 }
